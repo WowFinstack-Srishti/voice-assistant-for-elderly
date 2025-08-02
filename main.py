@@ -14,6 +14,29 @@ def speak(text):
 
 commands = ["time", "reminder", "emergency", "weather", "exit"]
 
+def process_command(text):
+    words = text.lower().split()
+    for word in words:
+        cmd = match_command(word, commands)
+        if cmd:
+            if cmd == 'time':
+                current_time = datetime.now().strftime("%H:%M")
+                speak(f"The current time is {current_time}.")
+            elif cmd == 'reminder':
+                speak("Setting a medicine reminder for 10 seconds.")
+                set_reminder(10, "Time to take your medicine!")
+            elif cmd == 'emergency':
+                trigger_emergency()
+            elif cmd == 'weather':
+                speak(get_weather())
+            elif cmd == 'exit':
+                speak("Goodbye!")
+                exit()
+            return
+    speak("Sorry, I didn't understand that command. Please try again.")
+
+
+
 def main():
     while True:
         user_input = listen_command().lower()
