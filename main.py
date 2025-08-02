@@ -1,13 +1,18 @@
 from voice_module import listen_command
 from soundex_module import match_command
+from gui import show_gui
+from tasks.reminder import set_reminder
+from tasks.emergency import trigger_emergency
+from tasks.weather import get_weather
 import pyttsx3
+from datetime import datetime
 
 def speak(text):
     engine = pyttsx3.init()
     engine.say(text)
     engine.runAndWait()
 
-commands = ["time", "reminder", "emergency", "weather"]
+commands = ["time", "reminder", "emergency", "weather", "exit"]
 
 def main():
     while True:
