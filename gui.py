@@ -1,14 +1,18 @@
 import tkinter as tk
+import threading
 
-def run_gui():
+def show_gui(callback):
     window = tk.Tk()
     window.title("Voice-based assistant for Elderly Care")
-    window.geometry("400x300")
+    window.geometry("400x200")
 
-    label = tk.Label(window, text="Welcome to the Voice-based Assistant for Elderly Care", font=("Arial", 14))
+    label = tk.Label(window, text="Click to Speak", font=("Arial", 18))
     label.pack(pady=20)
 
-    status = tk.Label(window, text="Status: Ready", font=("Arial", 14))
-    status.pack()
+    def on_click():
+        threading.Thread(target=callback).start()
+
+    btn = tk.Button(window, text="Start Listening", command=on_click, font=("Arial", 16), bg="lightblue")
+    btn.pack(pady=10)
 
     window.mainloop()
