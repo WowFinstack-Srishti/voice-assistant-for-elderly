@@ -35,7 +35,15 @@ def process_command(text):
             return
     speak("Sorry, I didn't understand that command. Please try again.")
 
-
+def run_assistant():
+    speak("Hello! I am you voice assistant. Speak now.")
+    while True:
+        command = listen_command()
+        if command:
+            print("Heard:", command)
+            process_command(command)
+        #else:
+        #    speak("I didn't catch that. Please try again.")
 
 def main():
     while True:
